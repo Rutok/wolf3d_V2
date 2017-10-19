@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   sc_intro.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/14 20:18:31 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/14 21:52:00 by nboste           ###   ########.fr       */
+/*   Created: 2017/10/19 07:39:33 by nboste            #+#    #+#             */
+/*   Updated: 2017/10/19 08:55:21 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "scene.h"
+#include "error.h"
 
-typedef struct	s_2dpair
+static void	intro_process(void *e)
 {
-	double	x;
-	double	y;
-}				t_2dpair;
+	t_env	*env;
 
-typedef struct	s_2ipair
+	env = (t_env *)e;
+	if (env->event.keys[SDL_SCANCODE_W])
+		ft_putstr("forward\n");
+}
+
+t_scene		*init_sc_intro(void)
 {
-	int		x;
-	int		y;
-}				t_2ipair;
+	t_scene	*s;
 
-typedef struct unsigned int		t_uint32;
-
-typedef struct unsigned char	t_bool;
-
-#endif
+	if (!(s = (t_scene *)malloc(sizeof(t_scene))))
+		ft_exit("Malloc failed.");
+	s->process = intro_process;
+	return (s);
+}

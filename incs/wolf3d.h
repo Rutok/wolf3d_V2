@@ -6,22 +6,20 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:42 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/14 22:28:43 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/19 08:56:06 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-//# include "types.h"
 # include "libft.h"
 # include <SDL.h>
+# include "event.h"
 
 # define W_WIDTH 800
 # define W_HEIGHT 600
 # define MAXFPS 120
-
-typedef struct s_env	t_env;
 
 typedef struct			s_player
 {
@@ -29,9 +27,32 @@ typedef struct			s_player
 	t_2ipair	dir;
 }						t_player;
 
+typedef struct			s_enemy
+{
+	void			(*process)(void *);
+	t_2dpair		pos;
+	t_2ipair		dir;
+	struct s_enemy	*next;
+}						t_enemy;
+
+typedef struct			s_map
+{
+	t_uint32	**array;
+	t_2ipair	size;
+}						t_map;
+
+typedef struct			s_scene
+{
+	void		(*process)(void *);
+	t_map		m;
+	t_player	p;
+	t_enemy		*e;
+}						t_scene;
+
 typedef struct			s_wolf3d
 {
-	t_player	p;
+	t_scene		*current;
+	t_scene		*scenes;
 }						t_wolf3d;
 
 typedef struct			s_win
@@ -53,11 +74,12 @@ typedef struct			s_rend
 typedef struct			s_env
 {
 	t_wolf3d	game;
+	t_event		event;
 	t_win		win;
 	t_rend		rend;
 }						t_env;
 
-int						wolf3d_Run();
+int						wolf3d_run();
 
 void					init(t_env *env);
 

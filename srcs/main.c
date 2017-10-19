@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:03 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/14 21:43:57 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/19 08:42:24 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		main(int argc, char **argv)
 {
-	return (wolf3d_Run(argc, argv));
+	return (wolf3d_run(argc, argv));
 }

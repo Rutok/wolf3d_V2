@@ -6,12 +6,13 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 21:40:50 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/14 22:34:20 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/19 08:42:11 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include "drawer.h"
+#include "scene.h"
 #include "error.h"
 
 static void	print_fps(void)
@@ -33,7 +34,7 @@ static void	print_fps(void)
 	}
 }
 
-int			wolf3d_Run()
+int			wolf3d_run(void)
 {
 	t_env env;
 
@@ -69,21 +70,23 @@ void		process(t_env *env)
 	fps = 1000 / MAXFPS;
 	time = SDL_GetTicks();
 	etime = 0;
-	while (1)
+	env->game.current = init_sc_intro();
+	event_reset(&env->event);
+	while (!env->event.exit)
 	{
 		if (etime < fps)
 			SDL_Delay(fps - etime);
 		time += fps;
 		print_fps();
+		event_process(&env->event);
+		env->game.current->process(env);
 		drawer_process(env);
 	}
-	destroy(env);
 }
 
-void	destroy(t_env *env)
+void		destroy(t_env *env)
 {
 	drawer_destroy(env);
 	SDL_DestroyWindow(env->win.win_sdl);
 	SDL_Quit();
 }
-
