@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 21:40:50 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/19 08:42:11 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/19 09:59:06 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,10 @@ void		init(t_env *env)
 
 void		process(t_env *env)
 {
-	int	time;
-	int	etime;
-	int	fps;
-
-	fps = 1000 / MAXFPS;
-	time = SDL_GetTicks();
-	etime = 0;
 	env->game.current = init_sc_intro();
 	event_reset(&env->event);
 	while (!env->event.exit)
 	{
-		if (etime < fps)
-			SDL_Delay(fps - etime);
-		time += fps;
 		print_fps();
 		event_process(&env->event);
 		env->game.current->process(env);
@@ -86,6 +76,7 @@ void		process(t_env *env)
 
 void		destroy(t_env *env)
 {
+	free(env->game.current);
 	drawer_destroy(env);
 	SDL_DestroyWindow(env->win.win_sdl);
 	SDL_Quit();

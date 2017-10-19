@@ -6,7 +6,7 @@
 #    By: nboste <nboste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/14 20:14:11 by nboste            #+#    #+#              #
-#    Updated: 2017/10/19 07:50:38 by nboste           ###   ########.fr        #
+#    Updated: 2017/10/19 11:29:37 by nboste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,10 @@ SRC = srcs/main.c \
 	  srcs/error.c \
 	  srcs/drawer.c \
 	  srcs/wolf3d.c \
-	  srcs/sc_intro.c \
 	  srcs/event.c \
+	  srcs/sc_intro.c \
+	  srcs/sc_basic.c \
+	  srcs/player_event.c \
 
 OBJ = $(SRC:%.c=%.o)
 
