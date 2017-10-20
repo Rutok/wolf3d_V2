@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 14:36:29 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 15:25:35 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "error.h"
 #include "player_event.h"
 #include "raycasting.h"
-#include <stdio.h>
+#include "background.h"
 
 static void		escape_handle(t_env *env)
 {
@@ -41,6 +41,7 @@ static void		basic_process(void *e)
 	env = (t_env *)e;
 	m = &env->game.current->m;
 	p = &env->game.current->p;
+	draw_background(env);
 	raycast_scene(env->game.current, env);
 	process_basic_mvt(env);
 	escape_handle(env);
