@@ -6,13 +6,14 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 12:04:49 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:33:10 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 14:55:48 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 #include <math.h>
 #include "drawer.h"
+#include "color.h"
 
 static void	init_raycast(t_raydata *d, t_scene *s, int x)
 {
@@ -22,13 +23,17 @@ static void	init_raycast(t_raydata *d, t_scene *s, int x)
 	d->raydir.y = s->p.dir.y + s->p.plane.y * d->camerax;
 	d->mapsquare.x = (int)(d->raypos.x);
 	d->mapsquare.y = (int)(d->raypos.y);
-	d->deltadist.x = sqrt(1 + (d->raydir.y * d->raydir.y) / (d->raydir.x * d->raydir.x));
-	d->deltadist.y = sqrt(1 + (d->raydir.x * d->raydir.x) / (d->raydir.y * d->raydir.y));
+	d->deltadist.x = sqrt(1 +
+			(d->raydir.y * d->raydir.y) / (d->raydir.x * d->raydir.x));
+	d->deltadist.y = sqrt(1 +
+			(d->raydir.x * d->raydir.x) / (d->raydir.y * d->raydir.y));
 	d->hit = 0;
 	d->step.x = d->raydir.x < 0 ? -1 : 1;
 	d->step.y = d->raydir.y < 0 ? -1 : 1;
-	d->sidedist.x = d->step.x == -1 ? (d->raypos.x - d->mapsquare.x) * d->deltadist.x : (d->mapsquare.x + 1 - d->raypos.x) * d->deltadist.x;
-	d->sidedist.y = d->step.y == -1 ? (d->raypos.y - d->mapsquare.y) * d->deltadist.y : (d->mapsquare.y + 1 - d->raypos.y) * d->deltadist.y;
+	d->sidedist.x = d->step.x == -1 ? (d->raypos.x - d->mapsquare.x)
+		* d->deltadist.x : (d->mapsquare.x + 1 - d->raypos.x) * d->deltadist.x;
+	d->sidedist.y = d->step.y == -1 ? (d->raypos.y - d->mapsquare.y)
+		* d->deltadist.y : (d->mapsquare.y + 1 - d->raypos.y) * d->deltadist.y;
 }
 
 static void	ray_dda(t_raydata *d, t_scene *s)
@@ -51,47 +56,11 @@ static void	ray_dda(t_raydata *d, t_scene *s)
 			d->hit = 1;
 	}
 	if (d->side)
-		d->dist = (d->mapsquare.y - d->raypos.y + (1 - d->step.y) / 2) / d->raydir.y;
+		d->dist = (d->mapsquare.y - d->raypos.y + (1 - d->step.y) / 2)
+			/ d->raydir.y;
 	else
-		d->dist = (d->mapsquare.x - d->raypos.x + (1 - d->step.x) / 2) / d->raydir.x;
-}
-
-static t_color	getcolor(t_2ipair m, t_2dpair p, t_raydata *d)
-{
-	t_color	c;
-
-	if (d->side)
-	{
-		if (p.y < m.y)
-		{
-			c.a = 0;
-			c.r = 0xE5;
-			c.g = 0xDC;
-			c.b = 0xC5;
-		}
-		else
-		{
-			c.r = 0xC1;
-			c.g = 0x49;
-			c.b = 0x53;
-		}
-	}
-	else
-	{
-		if (p.x < m.x)
-		{
-			c.r = 0x84;
-			c.g = 0x8F;
-			c.b = 0xA5;
-		}
-		else
-		{
-			c.r = 0x4C;
-			c.g = 0x4C;
-			c.b = 0x47;
-		}
-	}
-	return (c);
+		d->dist = (d->mapsquare.x - d->raypos.x + (1 - d->step.x) / 2)
+			/ d->raydir.x;
 }
 
 static void	draw_stripe(t_raydata *d, t_env *env, int x)
@@ -131,5 +100,4 @@ void		raycast_scene(t_scene *s, t_env *env)
 		draw_stripe(&raydata, env, x);
 		x++;
 	}
-
 }

@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 21:40:50 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:56:37 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 14:19:07 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void		process(t_env *env)
 			env->game.old = 0;
 		}
 		print_fps();
+		drawer_process(env);
 		event_process(&env->event);
 		env->game.current->process(env);
-		drawer_process(env);
 	}
 }
 

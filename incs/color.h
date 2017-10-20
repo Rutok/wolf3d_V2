@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_event.h                                     :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 11:08:07 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 14:33:31 by nboste           ###   ########.fr       */
+/*   Created: 2017/10/20 14:49:45 by nboste            #+#    #+#             */
+/*   Updated: 2017/10/20 14:50:31 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_EVENT_H
-# define PLAYER_EVENT_H
+#ifndef COLOR_H
+# define COLOR_H
 
-# include "wolf3d.h"
+# include "raycasting.h"
 
-void	process_basic_mvt(t_env *env);
+t_color		getcolor(t_2ipair m, t_2dpair p, t_raydata *d);
 
 #endif

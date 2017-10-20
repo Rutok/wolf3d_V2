@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 11:04:57 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:54:20 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 14:44:53 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 #include <stdio.h>
 #include <math.h>
 
-t_2dpair	get_speeds()
+t_2dpair	get_speeds(void)
 {
 	static int	time;
 	static int	old;
 	double		frame_time;
 	t_2dpair	p;
 
+	if (time == 0)
+	{
+		time = SDL_GetTicks();
+		p.x = 0;
+		p.y = 0;
+		return (p);
+	}
 	old = time;
 	time = SDL_GetTicks();
 	frame_time = (time - old) / 1000.0;
@@ -42,6 +49,16 @@ static void	process_rotation(t_player *p, double s)
 	p->plane.y = oldp * sin(s) + p->plane.y * cos(s);
 }
 
+static void	process_trans(t_player *p, t_map *m, double s)
+{
+	if (m->array[(int)(p->pos.x + p->dir.x * s)
+			+ (int)(m->size.x * (int)(p->pos.y))] == 0)
+		p->pos.x += p->dir.x * s;
+	if (m->array[(int)(p->pos.x)
+			+ (int)(m->size.x * (int)(p->pos.y + p->dir.y * s))] == 0)
+		p->pos.y += p->dir.y * s;
+}
+
 void		process_basic_mvt(t_env *env)
 {
 	t_2dpair	speeds;
@@ -52,19 +69,9 @@ void		process_basic_mvt(t_env *env)
 	m = &env->game.current->m;
 	p = &env->game.current->p;
 	if (env->event.keys[SDL_SCANCODE_W])
-	{
-		if (m->array[(int)(p->pos.x + p->dir.x * speeds.x) + (int)(m->size.x * (int)(p->pos.y))] == 0)
-			p->pos.x += p->dir.x * speeds.x;
-		if (m->array[(int)(p->pos.x) + (int)(m->size.x * (int)(p->pos.y + p->dir.y * speeds.x))] == 0)
-			p->pos.y += p->dir.y * speeds.x;
-	}
+		process_trans(p, m, speeds.x);
 	if (env->event.keys[SDL_SCANCODE_S])
-	{
-		if (m->array[(int)(p->pos.x - p->dir.x * speeds.x) + (int)(m->size.x * (int)(p->pos.y))] == 0)
-			p->pos.x -= p->dir.x * speeds.x;
-		if (m->array[(int)(p->pos.x) + (int)(m->size.x * (int)(p->pos.y - p->dir.y * speeds.x))] == 0)
-			p->pos.y -= p->dir.y * speeds.x;
-	}
+		process_trans(p, m, -speeds.x);
 	if (env->event.keys[SDL_SCANCODE_A])
 		process_rotation(p, speeds.y);
 	if (env->event.keys[SDL_SCANCODE_D])

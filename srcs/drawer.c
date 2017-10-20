@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 22:03:07 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 04:39:36 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 14:34:26 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			drawer_destroy(t_env *env)
 	SDL_DestroyTexture(env->rend.texture_sdl);
 }
 
-void	drawer_putpixel(t_env *env, t_2ipair p, t_color c)
+void			drawer_putpixel(t_env *env, t_2ipair p, t_color c)
 {
 	t_rend	*r;
 

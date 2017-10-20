@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:45:19 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 14:36:29 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "error.h"
 #include "player_event.h"
 #include "raycasting.h"
+#include <stdio.h>
 
 static void		escape_handle(t_env *env)
 {
@@ -27,20 +28,31 @@ static void		escape_handle(t_env *env)
 		ft_putstr("SC - BASIC->INTRO\n");
 		env->game.old = env->game.current;
 		env->game.current = init_sc_intro();
+		SDL_Delay(100);
 	}
 }
 
 static void		basic_process(void *e)
 {
-	t_env	*env;
+	t_env		*env;
+	t_map		*m;
+	t_player	*p;
 
 	env = (t_env *)e;
-	process_basic_mvt(env);
+	m = &env->game.current->m;
+	p = &env->game.current->p;
 	raycast_scene(env->game.current, env);
+	process_basic_mvt(env);
 	escape_handle(env);
+	if (p->pos.x < 0 || p->pos.x > m->size.x
+			|| p->pos.y < 0 || p->pos.y > m->size.y)
+	{
+		env->game.current->p.pos.x = 2;
+		env->game.current->p.pos.y = 2;
+	}
 }
 
-static t_map	get_basic_map()
+static t_map	get_basic_map(void)
 {
 	t_map	m;
 	int		i;
@@ -64,7 +76,6 @@ static t_map	get_basic_map()
 	m.array[72] = 3;
 	m.array[125] = 4;
 	m.array[203] = 1;
-	m.array[352] = 2;
 	while (i < (20 * 20))
 		m.array[i++] = 1;
 	return (m);
