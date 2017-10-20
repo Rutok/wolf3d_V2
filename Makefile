@@ -6,7 +6,7 @@
 #    By: nboste <nboste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/14 20:14:11 by nboste            #+#    #+#              #
-#    Updated: 2017/10/19 11:29:37 by nboste           ###   ########.fr        #
+#    Updated: 2017/10/20 04:40:33 by nboste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = srcs/main.c \
 	  srcs/sc_intro.c \
 	  srcs/sc_basic.c \
 	  srcs/player_event.c \
+	  srcs/raycasting.c \
 
 OBJ = $(SRC:%.c=%.o)
 

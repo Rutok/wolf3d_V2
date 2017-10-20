@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:42 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/19 12:01:08 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 04:35:44 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 
 # define W_WIDTH 800
 # define W_HEIGHT 600
+
+typedef unsigned char	t_uchar;
+
+typedef struct			s_color
+{
+	t_uchar		r;
+	t_uchar		g;
+	t_uchar		b;
+	t_uchar		a;
+}						t_color;
 
 typedef struct			s_player
 {

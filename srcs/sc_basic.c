@@ -6,13 +6,14 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/19 12:02:16 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:16:44 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "error.h"
 #include "player_event.h"
+#include "raycasting.h"
 
 static void		escape_handle(t_env *env)
 {
@@ -42,36 +43,14 @@ static void		draw_map(t_map map)
 	ft_putchar('\n');
 }
 
-static void		draw_mapp(t_map map, t_player p)
-{
-	t_2ipair	c;
-
-	for (c.x = 0; c.x < 20 * 20; c.x++)
-	{
-		if (c.x % 20 == 0 && c.x != 0)
-			ft_putchar('\n');
-		if (c.x != ((int)(p.pos.x) + (int)(p.pos.y * map.size.x)))
-			ft_putnbr((int)map.array[c.x]);
-		else
-			ft_putchar('*');
-	}
-	ft_putchar('\n');
-}
 static void		basic_process(void *e)
 {
 	t_env	*env;
-	static int	o;
 
 	env = (t_env *)e;
 	escape_handle(env);
 	process_basic_mvt(env);
-	if (env->event.keys[SDL_SCANCODE_P] && o == 0)
-		o = 1;
-	if (!env->event.keys[SDL_SCANCODE_P] && o == 1)
-	{
-		o = 0;
-		draw_mapp(env->game.current->m, env->game.current->p);
-	}
+	raycast_scene(env->game.current, env);
 }
 
 static t_map	get_basic_map()
@@ -94,6 +73,11 @@ static t_map	get_basic_map()
 			m.array[i] = 0;
 		i++;
 	}
+	m.array[44] = 2;
+	m.array[72] = 3;
+	m.array[125] = 4;
+	m.array[203] = 1;
+	m.array[352] = 2;
 	while (i < (20 * 20))
 		m.array[i++] = 1;
 	draw_map(m);
