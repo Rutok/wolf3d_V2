@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:16:44 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:45:19 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,9 @@ static void		escape_handle(t_env *env)
 	{
 		pushed = 0;
 		ft_putstr("SC - BASIC->INTRO\n");
-		free(env->game.current);
+		env->game.old = env->game.current;
 		env->game.current = init_sc_intro();
 	}
-}
-
-static void		draw_map(t_map map)
-{
-	t_2ipair	c;
-
-	for (c.x = 0; c.x < 20 * 20; c.x++)
-	{
-		if (c.x % 20 == 0 && c.x != 0)
-			ft_putchar('\n');
-		ft_putnbr((int)map.array[c.x]);
-	}
-	ft_putchar('\n');
 }
 
 static void		basic_process(void *e)
@@ -48,9 +35,9 @@ static void		basic_process(void *e)
 	t_env	*env;
 
 	env = (t_env *)e;
-	escape_handle(env);
 	process_basic_mvt(env);
 	raycast_scene(env->game.current, env);
+	escape_handle(env);
 }
 
 static t_map	get_basic_map()
@@ -80,7 +67,6 @@ static t_map	get_basic_map()
 	m.array[352] = 2;
 	while (i < (20 * 20))
 		m.array[i++] = 1;
-	draw_map(m);
 	return (m);
 }
 

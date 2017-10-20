@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 21:40:50 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/19 09:59:06 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:40:39 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,15 @@ void		init(t_env *env)
 void		process(t_env *env)
 {
 	env->game.current = init_sc_intro();
+	env->game.old = 0;
 	event_reset(&env->event);
 	while (!env->event.exit)
 	{
+		if (env->game.old)
+		{
+			free(env->game.old);
+			env->game.old = 0;
+		}
 		print_fps();
 		event_process(&env->event);
 		env->game.current->process(env);

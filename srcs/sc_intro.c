@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 07:39:33 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/19 09:56:34 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:42:48 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	intro_process(void *e)
 	if (env->event.keys[SDL_SCANCODE_W])
 	{
 		ft_putstr("SC - INTRO->BASIC\n");
-		free(env->game.current);
+		env->game.old = env->game.current;
 		env->game.current = init_sc_basic();
 	}
 	if (env->event.keys[SDL_SCANCODE_ESCAPE])

@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:42 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 04:35:44 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:36:06 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct			s_scene
 typedef struct			s_wolf3d
 {
 	t_scene		*current;
+	t_scene		*old;
 	t_scene		*scenes;
 }						t_wolf3d;
 

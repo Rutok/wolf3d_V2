@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 12:04:49 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:10:45 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:33:10 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,31 +56,40 @@ static void	ray_dda(t_raydata *d, t_scene *s)
 		d->dist = (d->mapsquare.x - d->raypos.x + (1 - d->step.x) / 2) / d->raydir.x;
 }
 
-static t_color	getcolor(int n)
+static t_color	getcolor(t_2ipair m, t_2dpair p, t_raydata *d)
 {
 	t_color	c;
 
-	c.a = 0;
-	c.r = 0xE5;
-	c.g = 0xDC;
-	c.b = 0xC5;
-	if (n == 2)
+	if (d->side)
 	{
-		c.r = 0xC1;
-		c.g = 0x49;
-		c.b = 0x53;
+		if (p.y < m.y)
+		{
+			c.a = 0;
+			c.r = 0xE5;
+			c.g = 0xDC;
+			c.b = 0xC5;
+		}
+		else
+		{
+			c.r = 0xC1;
+			c.g = 0x49;
+			c.b = 0x53;
+		}
 	}
-	if (n == 3)
+	else
 	{
-		c.r = 0x84;
-		c.g = 0x8F;
-		c.b = 0xA5;
-	}
-	if (n == 4)
-	{
-		c.r = 0x4C;
-		c.g = 0x4C;
-		c.b = 0x47;
+		if (p.x < m.x)
+		{
+			c.r = 0x84;
+			c.g = 0x8F;
+			c.b = 0xA5;
+		}
+		else
+		{
+			c.r = 0x4C;
+			c.g = 0x4C;
+			c.b = 0x47;
+		}
 	}
 	return (c);
 }
@@ -101,7 +110,7 @@ static void	draw_stripe(t_raydata *d, t_env *env, int x)
 		st_nd.y = W_HEIGHT - 1;
 	pos.x = x;
 	pos.y = st_nd.x;
-	c = getcolor(env->game.current->m.array[d->mapsquare.x + 20 * d->mapsquare.y]);
+	c = getcolor(d->mapsquare, env->game.current->p.pos, d);
 	while (pos.y <= st_nd.y)
 	{
 		drawer_putpixel(env, pos, c);
