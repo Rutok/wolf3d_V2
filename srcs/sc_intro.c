@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 07:39:33 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:42:48 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:59:08 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	intro_process(void *e)
 	}
 	if (env->event.keys[SDL_SCANCODE_ESCAPE])
 		env->event.exit = 1;
+	SDL_Delay(100);
 }
 
 t_scene		*init_sc_intro(void)
@@ -35,6 +36,7 @@ t_scene		*init_sc_intro(void)
 	if (!(s = (t_scene *)malloc(sizeof(t_scene))))
 		ft_exit("Malloc failed.");
 	s->process = intro_process;
+	s->m.array = 0;
 	ft_putstr("SC - INTRO\n");
 	return (s);
 }

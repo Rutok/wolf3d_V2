@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 11:04:57 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 03:36:26 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:54:20 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_2dpair	get_speeds()
 	old = time;
 	time = SDL_GetTicks();
 	frame_time = (time - old) / 1000.0;
-	p.x = frame_time * 2.0;
-	p.y = frame_time * 1.0;
+	p.x = frame_time * 5.0;
+	p.y = frame_time * 3.0;
 	return (p);
 }
 

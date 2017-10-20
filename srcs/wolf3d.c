@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 21:40:50 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 05:40:39 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 05:56:37 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void		process(t_env *env)
 	{
 		if (env->game.old)
 		{
+			if (env->game.old->m.array)
+				free(env->game.old->m.array);
 			free(env->game.old);
 			env->game.old = 0;
 		}
