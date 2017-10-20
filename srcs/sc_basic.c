@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 15:25:35 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/20 16:29:36 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "player_event.h"
 #include "raycasting.h"
 #include "background.h"
+#include "map_reader.h"
 
 static void		escape_handle(t_env *env)
 {
@@ -53,7 +54,7 @@ static void		basic_process(void *e)
 	}
 }
 
-static t_map	get_basic_map(void)
+/*static t_map	get_basic_map(void)
 {
 	t_map	m;
 	int		i;
@@ -80,7 +81,7 @@ static t_map	get_basic_map(void)
 	while (i < (20 * 20))
 		m.array[i++] = 1;
 	return (m);
-}
+}*/
 
 t_scene			*init_sc_basic(void)
 {
@@ -96,7 +97,7 @@ t_scene			*init_sc_basic(void)
 	s->p.plane.x = 0.66;
 	s->p.plane.y = 0;
 	s->e = 0;
-	s->m = get_basic_map();
+	s->m = get_map("sc_basic.map");
 	ft_putstr("SC - BASIC\n");
 	return (s);
 }

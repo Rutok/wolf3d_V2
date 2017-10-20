@@ -6,7 +6,7 @@
 #    By: nboste <nboste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/14 20:14:11 by nboste            #+#    #+#              #
-#    Updated: 2017/10/20 15:36:07 by nboste           ###   ########.fr        #
+#    Updated: 2017/10/20 16:29:03 by nboste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = srcs/main.c \
 	  srcs/raycasting.c \
 	  srcs/color.c \
 	  srcs/background.c \
+	  srcs/map_reader.c \
 
 OBJ = $(SRC:%.c=%.o)
 

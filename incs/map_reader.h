@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_reader.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/14 20:16:03 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 16:11:07 by nboste           ###   ########.fr       */
+/*   Created: 2017/10/20 16:09:17 by nboste            #+#    #+#             */
+/*   Updated: 2017/10/20 16:20:30 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#ifndef MAP_READER_H
+# define MAP_READER_H
 
-int		main(int argc, char **argv)
-{
-	argc++;
-	argv++;
-	return (wolf3d_run());
-}
+# include "wolf3d.h"
+
+t_map	get_map(char *filename);
+
+#endif
