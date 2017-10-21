@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/21 11:43:59 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/21 13:45:01 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ t_scene			*init_sc_basic(void)
 	if (!(s = (t_scene *)malloc(sizeof(t_scene))))
 		ft_exit("Malloc failed.");
 	s->process = basic_process;
-	s->p.pos.x = 2;
-	s->p.pos.y = 2;
+	s->p.pos.x = 1.5;
+	s->p.pos.y = 1.5;
 	s->p.dir.x = 0;
 	s->p.dir.y = 1;
 	s->p.plane.x = 0.66;
 	s->p.plane.y = 0;
 	s->e = 0;
-	s->m = get_map("rcs/maps/sc_basic.map");
+	s->m = get_map("rcs/maps/sc_maze.map");
 	ft_putstr("SC - BASIC\n");
 	return (s);
 }

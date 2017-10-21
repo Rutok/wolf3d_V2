@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 07:39:33 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/21 11:48:27 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/21 13:11:49 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_images(t_env *env, t_scintro *d, int destroy)
 	static int	init;
 	SDL_Rect	r;
 
-	if (destroy)
+	if (destroy && init == 1)
 	{
 		SDL_DestroyTexture(d->logo);
 		SDL_DestroyTexture(d->enter);
