@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 22:03:07 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 14:34:26 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/21 09:09:00 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ void			drawer_init(t_env *env)
 
 void			drawer_process(t_env *env)
 {
-	SDL_UpdateTexture(
-			env->rend.texture_sdl,
-			NULL,
-			env->rend.pixels,
-			env->rend.size.x * sizeof(t_uint32));
-	SDL_RenderCopy(
-			env->rend.rend_sdl,
-			env->rend.texture_sdl,
-			NULL,
-			NULL);
 	SDL_RenderPresent(env->rend.rend_sdl);
 	ft_memset(
 			env->rend.pixels,

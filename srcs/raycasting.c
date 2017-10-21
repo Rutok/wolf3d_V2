@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 12:04:49 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 14:55:48 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/21 11:13:04 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,14 @@ void		raycast_scene(t_scene *s, t_env *env)
 		draw_stripe(&raydata, env, x);
 		x++;
 	}
+	SDL_UpdateTexture(
+			env->rend.texture_sdl,
+			NULL,
+			env->rend.pixels,
+			env->rend.size.x * sizeof(t_uint32));
+	SDL_RenderCopy(
+			env->rend.rend_sdl,
+			env->rend.texture_sdl,
+			NULL,
+			NULL);
 }

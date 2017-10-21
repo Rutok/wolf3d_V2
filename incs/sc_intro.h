@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_event.h                                     :+:      :+:    :+:   */
+/*   sc_intro.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 11:08:07 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/21 10:54:22 by nboste           ###   ########.fr       */
+/*   Created: 2017/10/21 10:29:00 by nboste            #+#    #+#             */
+/*   Updated: 2017/10/21 11:47:04 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_EVENT_H
-# define PLAYER_EVENT_H
+#ifndef SC_INTRO_H
+# define SC_INTRO_H
 
 # include "wolf3d.h"
 
-void	process_basic_mvt(t_env *env);
-
-void	process_intro_mvt(t_env *env);
+typedef struct	s_scintro
+{
+	SDL_Texture		*logo;
+	SDL_Texture		*enter;
+}				t_scintro;
 
 #endif

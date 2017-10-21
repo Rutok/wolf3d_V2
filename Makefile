@@ -6,7 +6,7 @@
 #    By: nboste <nboste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/14 20:14:11 by nboste            #+#    #+#              #
-#    Updated: 2017/10/20 16:29:03 by nboste           ###   ########.fr        #
+#    Updated: 2017/10/21 11:42:07 by nboste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ OBJ = $(SRC:%.c=%.o)
 INC = -I./incs \
 	  -I./libft/includes \
 	  -I/usr/include \
-	  -I/Library/Frameworks/SDL2.framework/Headers \
+	  -I ~/Library/Frameworks/SDL2.framework/Headers \
 
 LIB = -L./libft \
-	  -L/Library/Frameworks/SDL2.framework \
-	  -F/Library/Frameworks
+	  -F ~/Library/Frameworks/SDL2.framework/Versions/Current \
+	  ~/Library/Frameworks/SDL2_image.framework/Versions/Current/SDL2_image \
 
 all: $(NAME)
 

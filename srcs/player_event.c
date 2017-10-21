@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 11:04:57 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 14:44:53 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/21 10:52:12 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,14 @@ void		process_basic_mvt(t_env *env)
 		process_rotation(p, speeds.y);
 	if (env->event.keys[SDL_SCANCODE_D])
 		process_rotation(p, -speeds.y);
+}
+
+void		process_intro_mvt(t_env *env)
+{
+	t_2dpair	speeds;
+	t_player	*p;
+
+	speeds = get_speeds();
+	p = &env->game.current->p;
+	process_rotation(p, speeds.y / 3);
 }
