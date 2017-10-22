@@ -6,7 +6,7 @@
 #    By: nboste <nboste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/14 20:14:11 by nboste            #+#    #+#              #
-#    Updated: 2017/10/21 11:42:07 by nboste           ###   ########.fr        #
+#    Updated: 2017/10/22 13:10:47 by nboste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = srcs/main.c \
 	  srcs/color.c \
 	  srcs/background.c \
 	  srcs/map_reader.c \
+	  srcs/texture.c \
 
 OBJ = $(SRC:%.c=%.o)
 

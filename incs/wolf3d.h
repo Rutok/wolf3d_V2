@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:42 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 16:10:53 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/22 12:48:53 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <SDL.h>
 # include "event.h"
+# include "texture.h"
 
 # define W_WIDTH 800
 # define W_HEIGHT 600
@@ -88,6 +89,7 @@ typedef struct			s_env
 	t_event		event;
 	t_win		win;
 	t_rend		rend;
+	t_texture	text;
 }						t_env;
 
 int						wolf3d_run();
