@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 12:05:04 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/20 14:33:41 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/24 01:15:00 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_raydata
 	t_2ipair	step;
 	int			hit;
 	int			side;
+	double		wallx;
+	t_2dpair	floor;
 }					t_raydata;
 
 void				raycast_scene(t_scene *s, t_env *env);

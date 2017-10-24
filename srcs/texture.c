@@ -6,13 +6,13 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 12:36:50 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/22 13:11:08 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/23 22:22:29 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
 
-t_texture	loadTextures(void)
+t_texture	load_textures(void)
 {
 	t_texture	t;
 

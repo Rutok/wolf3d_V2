@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 11:04:57 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/21 10:52:12 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/23 22:19:46 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 #include <stdio.h>
 #include <math.h>
 
-t_2dpair	get_speeds(void)
+t_2dpair	get_speeds(t_env *env)
 {
 	static int	time;
 	static int	old;
 	double		frame_time;
 	t_2dpair	p;
+	double		b_speed;
 
+	b_speed = 5;
+	if (env->event.keys[SDL_SCANCODE_LSHIFT])
+		b_speed = 8;
 	if (time == 0)
 	{
 		time = SDL_GetTicks();
@@ -31,7 +35,7 @@ t_2dpair	get_speeds(void)
 	old = time;
 	time = SDL_GetTicks();
 	frame_time = (time - old) / 1000.0;
-	p.x = frame_time * 5.0;
+	p.x = frame_time * b_speed;
 	p.y = frame_time * 3.0;
 	return (p);
 }
@@ -65,7 +69,7 @@ void		process_basic_mvt(t_env *env)
 	t_map		*m;
 	t_player	*p;
 
-	speeds = get_speeds();
+	speeds = get_speeds(env);
 	m = &env->game.current->m;
 	p = &env->game.current->p;
 	if (env->event.keys[SDL_SCANCODE_W])
@@ -83,7 +87,7 @@ void		process_intro_mvt(t_env *env)
 	t_2dpair	speeds;
 	t_player	*p;
 
-	speeds = get_speeds();
+	speeds = get_speeds(env);
 	p = &env->game.current->p;
 	process_rotation(p, speeds.y / 3);
 }

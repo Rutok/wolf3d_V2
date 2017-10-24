@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 07:39:33 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/21 13:11:49 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/24 03:44:34 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void	intro_process(void *e)
 
 	env = (t_env *)e;
 	SDL_RenderClear(env->rend.rend_sdl);
-	draw_background(env);
 	raycast_scene(env->game.current, env);
 	draw_images(env, &d, 0);
 	process_intro_mvt(env);

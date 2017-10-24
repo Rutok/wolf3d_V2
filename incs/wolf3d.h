@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:42 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/22 12:48:53 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/24 03:46:00 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "event.h"
 # include "texture.h"
 
-# define W_WIDTH 800
-# define W_HEIGHT 600
+# define W_WIDTH 1280
+# define W_HEIGHT 720
 
 typedef unsigned char	t_uchar;
 

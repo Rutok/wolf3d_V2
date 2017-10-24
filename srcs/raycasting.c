@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 12:04:49 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/21 11:13:04 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/24 01:31:33 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,48 @@ static void	draw_stripe(t_raydata *d, t_env *env, int x)
 		drawer_putpixel(env, pos, c);
 		pos.y++;
 	}
+	int posy;
+	posy = pos.y;
+	while (pos.y < W_HEIGHT)
+	{
+		c = getcolor_floor(d, pos, posy);
+		drawer_putpixel(env, pos, c);
+		pos.y++;
+	}
 }
+
+/*static void	ray_more(t_raydata *d)
+{
+	if (d->side == 0)
+		d->wallx = d->raypos.y + d->dist * d->raydir.y;
+	else
+		d->wallx = d->raypos.x + d->dist * d->raydir.x;
+	d->wallx -= floor(d->wallx);
+}
+
+static void floor_casting(t_raydata *d)
+{
+	if (d->side == 0 && d->raydir.x > 0)
+	{
+		d->floor.x = d->mapsquare.x;
+		d->floor.y = d->mapsquare.y + d->wallx;
+	}
+	else if (d->side == 0 && d->raydir.x < 0)
+	{
+		d->floor.x = d->mapsquare.x + 1.0;
+		d->floor.y = d->mapsquare.y + d->wallx;
+	}
+	else if (d->side == 1 && d->raydir.y > 0)
+	{
+		d->floor.x = d->mapsquare.x + d->wallx;
+		d->floor.y = d->mapsquare.y;
+	}
+	else
+	{
+		d->floor.x = d->mapsquare.x + d->wallx;
+		d->floor.y = d->mapsquare.y + 1;
+	}
+}*/
 
 void		raycast_scene(t_scene *s, t_env *env)
 {
@@ -97,6 +138,8 @@ void		raycast_scene(t_scene *s, t_env *env)
 	{
 		init_raycast(&raydata, s, x);
 		ray_dda(&raydata, s);
+	//	ray_more(&raydata);
+	//	floor_casting(&raydata);
 		draw_stripe(&raydata, env, x);
 		x++;
 	}
