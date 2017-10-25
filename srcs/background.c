@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:24:36 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/24 00:09:05 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/25 01:01:02 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,13 @@ void	draw_background(t_env *env)
 {
 	t_2ipair	i;
 	t_color		sky;
-	t_color		floor;
 
-	floor.a = 0;
-	floor.r = 0x1B;
-	floor.g = 0x99;
-	floor.b = 0x8B;
 	sky.a = 0;
-	sky.r = 0xC9;
-	sky.g = 0xDA;
-	sky.b = 0xEA;
 	sky.r = 0x20;
 	sky.g = 0x20;
 	sky.b = 0x20;
-
-	i.x = -1;
-	while (++i.x < env->rend.size.x)
+	i.x = 0;
+	while (i.x < env->rend.size.x)
 	{
 		i.y = 0;
 		while (i.y < env->rend.size.y)
@@ -41,5 +32,6 @@ void	draw_background(t_env *env)
 				drawer_putpixel(env, i, sky);
 			i.y++;
 		}
+		i.x++;
 	}
 }

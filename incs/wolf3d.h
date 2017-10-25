@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 20:16:42 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/24 03:46:00 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/25 00:43:01 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct			s_map
 {
 	t_uint32	*array;
 	t_2ipair	size;
+	t_uint32	alder;
 }						t_map;
 
 typedef struct			s_scene
