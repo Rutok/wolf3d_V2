@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 09:23:45 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/24 03:55:40 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/26 21:22:57 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void		basic_process(void *e)
 	env = (t_env *)e;
 	m = &env->game.current->m;
 	p = &env->game.current->p;
-	//draw_background(env);
 	raycast_scene(env->game.current, env);
 	process_basic_mvt(env);
 	escape_handle(env);
@@ -68,7 +67,7 @@ t_scene			*init_sc_basic(void)
 	s->p.plane.x = .8;
 	s->p.plane.y = 0;
 	s->e = 0;
-	s->m = get_map("rcs/maps/sc_maze.map");
+	s->m = get_map("sc_maze.map");
 	ft_putstr("SC - BASIC\n");
 	return (s);
 }

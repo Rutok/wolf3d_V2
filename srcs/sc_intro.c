@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 07:39:33 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/24 03:44:34 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/26 23:05:18 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 #include "background.h"
 #include "map_reader.h"
 #include "player_event.h"
+
+static void	images_init(t_env *env, t_scintro *d)
+{
+	d->logo = IMG_LoadTexture(
+			env->rend.rend_sdl, "rcs/imgs/title_screen.png");
+	d->enter = IMG_LoadTexture(env->rend.rend_sdl, "rcs/imgs/press.png");
+	if (!d->logo || !d->enter)
+		ft_exit("Can't load images!");
+}
 
 static void	draw_images(t_env *env, t_scintro *d, int destroy)
 {
@@ -33,9 +42,7 @@ static void	draw_images(t_env *env, t_scintro *d, int destroy)
 	}
 	if (!init)
 	{
-		d->logo = IMG_LoadTexture(
-				env->rend.rend_sdl, "rcs/imgs/title_screen.png");
-		d->enter = IMG_LoadTexture(env->rend.rend_sdl, "rcs/imgs/press.png");
+		images_init(env, d);
 		init = 1;
 	}
 	SDL_QueryTexture(d->logo, NULL, NULL, &r.w, &r.h);
@@ -87,7 +94,7 @@ t_scene		*init_sc_intro(void)
 	s->p.plane.x = 0.66;
 	s->p.plane.y = 0;
 	s->e = 0;
-	s->m = get_map("rcs/maps/sc_intro.map");
+	s->m = get_map("sc_intro.map");
 	ft_putstr("SC - INTRO\n");
 	return (s);
 }

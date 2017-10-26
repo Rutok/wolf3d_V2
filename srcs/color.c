@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 14:49:38 by nboste            #+#    #+#             */
-/*   Updated: 2017/10/24 03:52:29 by nboste           ###   ########.fr       */
+/*   Updated: 2017/10/26 23:20:16 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,12 @@ t_color			getcolor(t_2ipair m, t_2dpair p, t_raydata *d)
 		return (getcolor_more(m, p, l));
 }
 
-t_color		getcolor_floor(t_raydata *d, t_2ipair pos, int posy)
+t_color			getcolor_floor(int posy)
 {
 	t_color	c;
 	double	l;
-	d++;
-	posy++;
 
-
-	l = W_HEIGHT / (2.0 * pos.y - W_HEIGHT);
+	l = W_HEIGHT / (2.0 * posy - W_HEIGHT);
 	l = l > 6 ? 0 : (double)((1.0 - (l / 6)));
 	c.a = 0;
 	c.r = 0xCA * l;
@@ -75,4 +72,3 @@ t_color		getcolor_floor(t_raydata *d, t_2ipair pos, int posy)
 	c.b = 0x25 * l;
 	return (c);
 }
-
